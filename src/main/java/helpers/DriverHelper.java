@@ -2,6 +2,7 @@ package helpers;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.*;
+
 import java.time.Duration;
 
 
@@ -27,6 +28,12 @@ public class DriverHelper {
             driver = get();
         }
         return driver;
+    }
+
+    public static void disposeDriver() {
+        if (driver != null) {
+            driver.quit();
+        }
     }
 
     public static void acceptAlert() {

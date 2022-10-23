@@ -18,7 +18,6 @@ public class BaseTest {
 
     @AfterAll
     static void tearDown() {
-        driver.close();
-        driver.quit();
+        DriverHelper.disposeDriver();
     }
 }
