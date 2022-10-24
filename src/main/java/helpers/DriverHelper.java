@@ -14,10 +14,10 @@ public class DriverHelper {
     private static WebDriver get() {
         WebDriverManager.chromedriver().setup();
         driver = WebDriverFactory.getWebDriver(WebDriverFactory.Browser.CHROME);
-        driver.get(PropertyReader.readURL());
         driver.manage().window().maximize();
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+        driver.get(PropertyReader.readURL());
         getShadowRoot();
         acceptAlert();
         return driver;
