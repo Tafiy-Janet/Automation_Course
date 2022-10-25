@@ -8,7 +8,7 @@ import java.time.Duration;
 
 public class DriverHelper {
 
-    public static WebDriver driver = get();
+    public static WebDriver driver;
 
 
     private static WebDriver get() {
@@ -18,8 +18,7 @@ public class DriverHelper {
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         driver.get(PropertyReader.readURL());
-        getShadowRoot();
-        acceptAlert();
+        acceptInitialAlerts();
         return driver;
     }
 
@@ -33,13 +32,19 @@ public class DriverHelper {
     public static void disposeDriver() {
         if (driver != null) {
             driver.quit();
+            driver = null;
         }
+    }
+
+    public static void acceptInitialAlerts() {
+        getShadowRoot();
+        acceptAlert();
     }
 
     public static void acceptAlert() {
         By alert = By.xpath("//div[@class='disclaimer']");
         By acceptButton = By.xpath("//button[@class='agree']");
-        if (driver.findElement(alert).isDisplayed()) {
+        if (isElementPresent(alert) && driver.findElement(alert).isDisplayed()) {
             driver.findElement(acceptButton).click();
         }
     }
