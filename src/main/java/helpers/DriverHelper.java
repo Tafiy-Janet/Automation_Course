@@ -45,7 +45,7 @@ public class DriverHelper {
         By alert = By.xpath("//div[@class='disclaimer']");
         By acceptButton = By.xpath("//button[@class='agree']");
         if (isElementPresent(alert) && driver.findElement(alert).isDisplayed()) {
-            driver.findElement(acceptButton).click();
+            WaitHelper.waitAndClick(driver.findElement(acceptButton));
         }
     }
 

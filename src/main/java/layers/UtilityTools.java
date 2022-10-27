@@ -1,13 +1,17 @@
 package layers;
 
+import com.beust.ah.A;
 import helpers.WaitHelper;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
 import static helpers.DriverHelper.driver;
 
 public class UtilityTools {
 
+    Actions actions = new Actions(driver);
     @FindBy(xpath = "//div[@id='layers-control']")
     private WebElement layersButton;
     @FindBy(xpath = "//div[@class='preview-satellite']")
@@ -24,7 +28,7 @@ public class UtilityTools {
     private WebElement searchBar;
     @FindBy(xpath = "//div[@data-point='50.4500336,30.5241361']")
     private WebElement inputData;
-    @FindBy(xpath = "//img[@src='https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.8.0/images/marker-icon-2x.png']")
+    @FindBy(xpath = "//img[contains(@src,'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.8.0/images/marker-icon')]")
     private WebElement markerIcon;
     @FindBy(xpath = "//div[@id='arty-control']")
     private WebElement artilleryButton;
@@ -34,6 +38,13 @@ public class UtilityTools {
     private WebElement artilleryModelButton;
     @FindBy(xpath = "//div[@class='arty-modal']")
     private WebElement artilleryModal;
+
+    @FindBy(xpath = "//a[@title='Zoom in']")
+    private WebElement zoomPlus;
+
+    @FindBy(xpath = "//a[@title='Zoom out']")
+    private WebElement zoomMinus;
+
 
     public UtilityTools() {
         PageFactory.initElements(driver, this);
@@ -79,6 +90,14 @@ public class UtilityTools {
     public void chooseTerrainPreview() {
         layersButton.click();
         WaitHelper.waitAndClick(terrainPreview);
+    }
+
+    public void increaseZoom() {
+        actions.doubleClick(zoomPlus).doubleClick(zoomPlus).pause(5).build().perform();
+    }
+
+    public void decreaseZoom() {
+        actions.doubleClick(zoomMinus);
     }
 
 
