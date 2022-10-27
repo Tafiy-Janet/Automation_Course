@@ -40,7 +40,7 @@ public class ToolsTest extends BaseTest {
         //We need to use Thread.sleep since canvas elements changes are not displayed in DOM and cannot be detected by Selenium waits.
         Thread.sleep(2000);
         File source2 = ScreenshotHelper.takeSnapShot();
-        Assertions.assertTrue(ScreenshotHelper.isTwoImagesNotEqual(source1, source2, 50), "Layers are not changed");
+        Assertions.assertTrue(ScreenshotHelper.isTwoImagesNotEqual(source1, source2, 20), "Layers are not changed");
     }
 
     @Test
