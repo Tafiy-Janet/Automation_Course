@@ -9,25 +9,26 @@ public class TriangleTest {
 
     @BeforeEach
     public void setUp() {
-         logger = LoggerFactory.getLogger(TriangleTest.class);
+        logger = LoggerFactory.getLogger(TriangleTest.class);
     }
+
     @Test
-    public void test_01(){
-        var triangle = new Triangle();
+    public void test_01() {
+        var triangle = new Triangle(5, 4, 6);
         logger.info("Start test 01");
-        double result = triangle.calculateSquare(5,4,6);
+        double result = triangle.calculateSquare();
         logger.info("Checking the results");
-        Assertions.assertNotEquals(0, result, "Triangle does not exist");
+        Assertions.assertEquals(9.0, result, triangle + " square is equal to 9");
         logger.info("End test 01");
     }
 
     @Test
-    public void test_02(){
-        var triangle = new Triangle();
+    public void test_02() {
+        var triangle = new Triangle(0, 0, 0);
         logger.info("Start test 02");
-        double result = triangle.calculateSquare(0,0,0);
+        double result = triangle.calculateSquare();
         logger.info("Checking the results");
-        Assertions.assertNotEquals(0, result, "Triangle does not exist");
+        Assertions.assertTrue(result != 0, triangle + " square is calculable");
         logger.info("End test 02");
     }
 }
