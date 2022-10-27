@@ -40,12 +40,12 @@ public class ScreenshotHelper {
                     int g2 = color2.getGreen();
                     int b2 = color2.getBlue();
                     //Sum of differences of RGB values of the two images
-                    long data = Math.abs(r1 - r2) + Math.abs(g1 - g2) + Math.abs(b1 - b2);
+                   // long data = Math.abs(r1 - r2) + Math.abs(g1 - g2) + Math.abs(b1 - b2);
+                    long data = (r1 != r2 || g1 != g2 || b1 != b2) ? 1 : 0;
                     diff += data;
                 }
             }
-            double avg = diff / (w1 * h1 * 3);
-            int percentage = (int) ((avg / 255) * 100);
+            int percentage = (int) diff / (w1 * h1 / 100);
             return percentage >= threshold;
         }
     }
