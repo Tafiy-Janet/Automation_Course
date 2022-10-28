@@ -1,9 +1,10 @@
 package tests;
 
 import base.BaseTest;
+import helpers.PropertyReader;
 import helpers.ScreenshotHelper;
-import layers.LeftToolsPanel;
-import layers.RightToolsPanel;
+import pages.LeftToolsPanel;
+import pages.RightToolsPanel;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +15,7 @@ public class ToolsTest extends BaseTest {
     @Test
     public void successfulSearch() {
         var searchTool = new LeftToolsPanel();
-        searchTool.fillInSearchBar("Kyiv");
+        searchTool.fillInSearchBar(PropertyReader.readCapital());
         Assertions.assertTrue(searchTool.isSearchSuccessful());
     }
 

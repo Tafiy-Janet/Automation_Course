@@ -2,16 +2,15 @@ package helpers;
 
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
-import static helpers.DriverHelper.driver;
-
-public class ScreenshotHelper {
+public class ScreenshotHelper extends DriverBase {
     public static File takeSnapShot() {
-        TakesScreenshot scrShot = ((TakesScreenshot) driver);
+        TakesScreenshot scrShot = ((TakesScreenshot) getDriver());
         return scrShot.getScreenshotAs(OutputType.FILE);
     }
 

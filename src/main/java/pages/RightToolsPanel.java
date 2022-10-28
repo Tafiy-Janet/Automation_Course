@@ -1,15 +1,13 @@
-package layers;
+package pages;
+
 
 import helpers.WaitHelper;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
-import static helpers.DriverHelper.driver;
 
-public class RightToolsPanel {
-
+public class RightToolsPanel extends BasePage {
     Actions actions = new Actions(driver);
     @FindBy(xpath = "//div[@id='layers-control']")
     private WebElement layersButton;
@@ -38,9 +36,6 @@ public class RightToolsPanel {
     @FindBy(xpath = "//html[@lang='uk_UA']")
     private WebElement ukrainianPageLanguage;
 
-    public RightToolsPanel() {
-        PageFactory.initElements(driver, this);
-    }
 
     public void clickRuler() {
         rulerButton.click();
