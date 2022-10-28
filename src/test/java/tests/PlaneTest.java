@@ -1,7 +1,7 @@
 package tests;
 
 import base.BaseTest;
-import layers.InteractivePlane;
+import pages.InteractivePlane;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -23,7 +23,7 @@ public class PlaneTest extends BaseTest {
         Assertions.assertTrue(plane.isBombardmentMade());
     }
 
-    @Test
+   @Test
     public void successfulPlaneLanding() {
         var plane = new InteractivePlane()
                 .launchPlane()

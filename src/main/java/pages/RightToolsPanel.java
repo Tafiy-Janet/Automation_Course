@@ -1,16 +1,11 @@
-package layers;
+package pages;
 
 import helpers.WaitHelper;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
-import static helpers.DriverHelper.driver;
+public class RightToolsPanel extends BasePage {
 
-public class RightToolsPanel {
-
-    Actions actions = new Actions(driver);
     @FindBy(xpath = "//div[@id='layers-control']")
     private WebElement layersButton;
     @FindBy(xpath = "//div[@class='preview-satellite']")
@@ -38,9 +33,12 @@ public class RightToolsPanel {
     @FindBy(xpath = "//html[@lang='uk_UA']")
     private WebElement ukrainianPageLanguage;
 
-    public RightToolsPanel() {
-        PageFactory.initElements(driver, this);
-    }
+    @FindBy(xpath = "//img[contains(@src,'images/telegram-black.png')]")
+    private WebElement telegramButton;
+    @FindBy(xpath = "//img[contains(@src,'images/bot.png')]")
+    private WebElement botButton;
+
+
 
     public void clickRuler() {
         rulerButton.click();
@@ -99,6 +97,14 @@ public class RightToolsPanel {
     public boolean isPageInEnglish() {
         return englishPageLanguage.isEnabled();
     }
+
+    public void switchToTelegram(){
+        telegramButton.click();
+    }
+    public void switchToBot(){
+        botButton.click();
+    }
+
 
 
 }

@@ -1,14 +1,12 @@
-package layers;
+package pages;
 
-import helpers.DriverHelper;
+import helpers.WebElementHelper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
-import static helpers.DriverHelper.driver;
 
-public class InteractivePlane {
+public class InteractivePlane extends BasePage {
 
     @FindBy(xpath = "//img[@src='/images/custom/ukrainecapital.png']")
     private WebElement capital;
@@ -21,9 +19,7 @@ public class InteractivePlane {
     private WebElement explosion;
 
 
-    public InteractivePlane() {
-        PageFactory.initElements(driver, this);
-    }
+
 
     public InteractivePlane launchPlane() {
         capital.click();
@@ -50,7 +46,7 @@ public class InteractivePlane {
     }
 
     public boolean isPlaneLanded() {
-        return !DriverHelper.isElementPresent(planeSelector);
+        return !WebElementHelper.isElementPresent(planeSelector);
     }
 
 

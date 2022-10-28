@@ -1,12 +1,9 @@
-package layers;
+package pages;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
-import static helpers.DriverHelper.driver;
-
-public class LeftToolsPanel {
+public class LeftToolsPanel extends BasePage {
     @FindBy(xpath = "//input[@class='search-bar']")
     private WebElement searchBar;
     @FindBy(xpath = "//div[@data-point='50.4500336,30.5241361']")
@@ -22,9 +19,7 @@ public class LeftToolsPanel {
     @FindBy(xpath = "//div[@class='arty-modal']")
     private WebElement artilleryModal;
 
-    public LeftToolsPanel() {
-        PageFactory.initElements(driver, this);
-    }
+
 
     public void clickArtillery() {
         artilleryButton.click();

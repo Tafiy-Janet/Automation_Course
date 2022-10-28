@@ -1,38 +1,39 @@
 package tests;
 
 import base.BaseTest;
+import helpers.PropertyReader;
 import helpers.ScreenshotHelper;
-import layers.LeftToolsPanel;
-import layers.RightToolsPanel;
+import helpers.TabManagement;
+import pages.LeftToolsPanel;
+import pages.RightToolsPanel;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
-
 import java.io.File;
 
-
 public class ToolsTest extends BaseTest {
-    @Test
+    @RepeatedTest(value = 5,name = "{displayName} - repetition {currentRepetition} of {totalRepetitions}")
     public void successfulSearch() {
         var searchTool = new LeftToolsPanel();
         searchTool.fillInSearchBar("Kyiv");
         Assertions.assertTrue(searchTool.isSearchSuccessful());
     }
 
-    @Test
+    @RepeatedTest(value = 5,name = "{displayName} - repetition {currentRepetition} of {totalRepetitions}")
     public void successfulArtilleryCheck() {
         var artilleryTool = new LeftToolsPanel();
         artilleryTool.clickArtillery();
         Assertions.assertTrue(artilleryTool.isArtilleryModalAppear());
     }
 
-    @Test
+    @RepeatedTest(value = 5,name = "{displayName} - repetition {currentRepetition} of {totalRepetitions}")
     public void successfulRulerCheck() {
         var rulerTool = new RightToolsPanel();
         rulerTool.clickRuler();
         Assertions.assertTrue(rulerTool.isRulerModalAppear());
     }
 
-    @Test
+    @RepeatedTest(value = 5,name = "{displayName} - repetition {currentRepetition} of {totalRepetitions}")
     public void successfulLayersSwitch1() throws Exception {
         var layersTool = new RightToolsPanel();
         layersTool.chooseDefaultLayer();
@@ -90,6 +91,22 @@ public class ToolsTest extends BaseTest {
         language.switchToUkrainian();
         Assertions.assertTrue(language.isPageInUkrainian());
     }
+    @Test
+    public void successfulTelegramSwitch() {
+        var messenger = new RightToolsPanel();
+        messenger.switchToTelegram();
+        TabManagement.switchToNewTab();
+        Assertions.assertEquals(PropertyReader.readTelegramURL(), driver.getCurrentUrl());
+    }
+
+    @Test
+    public void successfulBotLiveMapSwitch() {
+        var bot = new RightToolsPanel();
+        bot.switchToBot();
+        TabManagement.switchToNewTab();
+        Assertions.assertEquals(PropertyReader.readBotURL(), driver.getCurrentUrl());
+    }
+
 
 
 }
