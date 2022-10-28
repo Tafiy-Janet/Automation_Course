@@ -1,7 +1,7 @@
 package tests;
 
 import base.BaseTest;
-import layers.InteractivePlane;
+import pages.InteractivePlane;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

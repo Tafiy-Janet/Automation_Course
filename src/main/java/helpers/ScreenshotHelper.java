@@ -2,16 +2,15 @@ package helpers;
 
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
-import static helpers.DriverHelper.driver;
-
-public class ScreenshotHelper {
+public class ScreenshotHelper extends DriverBase {
     public static File takeSnapShot() {
-        TakesScreenshot scrShot = ((TakesScreenshot) driver);
+        TakesScreenshot scrShot = ((TakesScreenshot) getDriver());
         return scrShot.getScreenshotAs(OutputType.FILE);
     }
 
@@ -40,7 +39,6 @@ public class ScreenshotHelper {
                     int g2 = color2.getGreen();
                     int b2 = color2.getBlue();
                     //Sum of differences of RGB values of the two images
-                   // long data = Math.abs(r1 - r2) + Math.abs(g1 - g2) + Math.abs(b1 - b2);
                     long data = (r1 != r2 || g1 != g2 || b1 != b2) ? 1 : 0;
                     diff += data;
                 }

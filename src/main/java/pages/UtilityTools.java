@@ -1,12 +1,11 @@
-package layers;
+package pages;
 
 import helpers.WaitHelper;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import static helpers.DriverHelper.driver;
 
-public class UtilityTools {
+
+public class UtilityTools extends BasePage {
 
     @FindBy(xpath = "//div[@id='layers-control']")
     private WebElement layersButton;
@@ -35,9 +34,6 @@ public class UtilityTools {
     @FindBy(xpath = "//div[@class='arty-modal']")
     private WebElement artilleryModal;
 
-    public UtilityTools() {
-        PageFactory.initElements(driver, this);
-    }
 
     public void clickRuler() {
         rulerButton.click();

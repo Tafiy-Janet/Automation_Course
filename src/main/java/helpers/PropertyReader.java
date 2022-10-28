@@ -14,6 +14,7 @@ public class PropertyReader {
         try {
             if (!isPropertiesLoaded) {
                 System.getProperties().load(ClassLoader.getSystemResourceAsStream("webData.properties"));
+                System.getProperties().load(ClassLoader.getSystemResourceAsStream("webDriver.properties"));
                 isPropertiesLoaded = true;
             }
         } catch (IOException e) {
@@ -23,5 +24,12 @@ public class PropertyReader {
 
     public static String readURL() {
         return readProperty("url");
+    }
+    public static String readCapital() {
+        return readProperty("capital");
+    }
+
+    public static String readBrowser() {
+        return readProperty("browser");
     }
 }
