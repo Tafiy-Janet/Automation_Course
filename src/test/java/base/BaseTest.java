@@ -14,8 +14,8 @@ public class BaseTest {
         driver = DriverHelper.getInstance();
     }
 
-//    @AfterEach
-//    public void tearDown() {
-//        DriverHelper.disposeDriver();
-//    }
+    @AfterEach
+    public void tearDown() {
+        DriverHelper.disposeDriver();
+    }
 }

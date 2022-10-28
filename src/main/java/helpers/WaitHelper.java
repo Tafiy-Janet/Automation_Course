@@ -16,6 +16,9 @@ public class WaitHelper {
     public static void waitAndClick(WebElement locator) {
         wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
     }
+    public static WebElement waitClickable(WebElement locator) {
+        return wait.until(ExpectedConditions.elementToBeClickable(locator));
+    }
 
     public static WebElement waitVisibility(WebElement locator) {
         return wait.until(ExpectedConditions.visibilityOf(locator));

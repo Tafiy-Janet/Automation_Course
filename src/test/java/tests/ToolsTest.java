@@ -2,41 +2,55 @@ package tests;
 
 import base.BaseTest;
 import helpers.ScreenshotHelper;
-import helpers.WaitHelper;
-import layers.UtilityTools;
+import layers.LeftToolsPanel;
+import layers.RightToolsPanel;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
 import java.io.File;
 
 
 public class ToolsTest extends BaseTest {
     @Test
     public void successfulSearch() {
-        var searchTool = new UtilityTools();
+        var searchTool = new LeftToolsPanel();
         searchTool.fillInSearchBar("Kyiv");
         Assertions.assertTrue(searchTool.isSearchSuccessful());
     }
 
     @Test
     public void successfulArtilleryCheck() {
-        var artilleryTool = new UtilityTools();
+        var artilleryTool = new LeftToolsPanel();
         artilleryTool.clickArtillery();
         Assertions.assertTrue(artilleryTool.isArtilleryModalAppear());
     }
 
     @Test
     public void successfulRulerCheck() {
-        var rulerTool = new UtilityTools();
+        var rulerTool = new RightToolsPanel();
         rulerTool.clickRuler();
         Assertions.assertTrue(rulerTool.isRulerModalAppear());
     }
 
     @Test
     public void successfulLayersSwitch1() throws Exception {
-        var layersTool = new UtilityTools();
+        var layersTool = new RightToolsPanel();
         layersTool.chooseDefaultLayer();
         File source1 = ScreenshotHelper.takeSnapShot();
         layersTool.chooseSatellitePreview();
+        //https://www.lambdatest.com/blog/threadsleep-java-selenium/
+        //We need to use Thread.sleep since canvas elements changes are not displayed in DOM and cannot be detected by Selenium waits.
+        Thread.sleep(2000);
+        File source2 = ScreenshotHelper.takeSnapShot();
+        Assertions.assertTrue(ScreenshotHelper.isTwoImagesNotEqual(source1, source2, 50), "Layers are not changed");
+    }
+
+    @Test
+    public void successfulLayersSwitch2() throws Exception {
+        var layers = new RightToolsPanel();
+        layers.chooseDefaultLayer();
+        File source1 = ScreenshotHelper.takeSnapShot();
+        layers.chooseTerrainPreview();
         //https://www.lambdatest.com/blog/threadsleep-java-selenium/
         //We need to use Thread.sleep since canvas elements changes are not displayed in DOM and cannot be detected by Selenium waits.
         Thread.sleep(2000);
@@ -45,31 +59,37 @@ public class ToolsTest extends BaseTest {
     }
 
     @Test
-    public void successfulLayersSwitch2() throws Exception {
-        var layers = new UtilityTools();
-        layers.chooseDefaultLayer();
-        File source1 = ScreenshotHelper.takeSnapShot();
-        layers.chooseTerrainPreview();
-        //https://www.lambdatest.com/blog/threadsleep-java-selenium/
-        //We need to use Thread.sleep since canvas elements changes are not displayed in DOM and cannot be detected by Selenium waits.
-        Thread.sleep(2000);
-        File source2 = ScreenshotHelper.takeSnapShot();
-        Assertions.assertTrue(ScreenshotHelper.isTwoImagesNotEqual(source1, source2, 1), "Layers are not changed");
-    }
-    @Test
     public void successfulZoomIncrease() throws Exception {
-        var zoom = new UtilityTools();
-        zoom.chooseSatellitePreview();
-        WaitHelper.implicitWait();
+        var zoom = new RightToolsPanel();
         File source1 = ScreenshotHelper.takeSnapShot();
         zoom.increaseZoom();
-        zoom.increaseZoom();
-        WaitHelper.implicitWait();
         File source2 = ScreenshotHelper.takeSnapShot();
-        Assertions.assertTrue(ScreenshotHelper.isTwoImagesNotEqual(source1, source2, 10), "Zoom is not changed");
+        Assertions.assertTrue(ScreenshotHelper.isTwoImagesNotEqual(source1, source2, 20), "Zoom is not changed");
     }
 
+    @Test
+    public void successfulZoomDecrease() throws Exception {
+        var zoom = new RightToolsPanel();
+        zoom.increaseZoom();
+        File source1 = ScreenshotHelper.takeSnapShot();
+        zoom.decreaseZoom();
+        File source2 = ScreenshotHelper.takeSnapShot();
+        Assertions.assertTrue(ScreenshotHelper.isTwoImagesNotEqual(source1, source2, 20), "Zoom is not changed");
+    }
 
+    @Test
+    public void successfulPageLanguageSwitch1() {
+        var language = new RightToolsPanel();
+        language.switchToEnglish();
+        Assertions.assertTrue(language.isPageInEnglish());
+    }
+
+    @Test
+    public void successfulPageLanguageSwitch2() {
+        var language = new RightToolsPanel();
+        language.switchToUkrainian();
+        Assertions.assertTrue(language.isPageInUkrainian());
+    }
 
 
 }
