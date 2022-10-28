@@ -25,13 +25,20 @@ public class PropertyReader {
     public static String readURL() {
         return readProperty("url");
     }
+
+    public static String readCapital() {
+        return readProperty("capital");
+    }
+
     public static String readTelegramURL() {
         return readProperty("url.telegram");
     }
+
     public static String readBotURL() {
         return readProperty("url.bot");
     }
-    public static String readBrowser(){
+
+    public static String readBrowser() {
         return readProperty("browser");
     }
 }

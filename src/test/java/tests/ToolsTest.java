@@ -7,33 +7,33 @@ import helpers.TabManagement;
 import pages.LeftToolsPanel;
 import pages.RightToolsPanel;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
+
 import java.io.File;
 
 public class ToolsTest extends BaseTest {
-    @RepeatedTest(value = 5,name = "{displayName} - repetition {currentRepetition} of {totalRepetitions}")
+    @Test
     public void successfulSearch() {
         var searchTool = new LeftToolsPanel();
-        searchTool.fillInSearchBar("Kyiv");
+        searchTool.fillInSearchBar(PropertyReader.readCapital());
         Assertions.assertTrue(searchTool.isSearchSuccessful());
     }
 
-    @RepeatedTest(value = 5,name = "{displayName} - repetition {currentRepetition} of {totalRepetitions}")
+    @Test
     public void successfulArtilleryCheck() {
         var artilleryTool = new LeftToolsPanel();
         artilleryTool.clickArtillery();
         Assertions.assertTrue(artilleryTool.isArtilleryModalAppear());
     }
 
-    @RepeatedTest(value = 5,name = "{displayName} - repetition {currentRepetition} of {totalRepetitions}")
+    @Test
     public void successfulRulerCheck() {
         var rulerTool = new RightToolsPanel();
         rulerTool.clickRuler();
         Assertions.assertTrue(rulerTool.isRulerModalAppear());
     }
 
-    @RepeatedTest(value = 5,name = "{displayName} - repetition {currentRepetition} of {totalRepetitions}")
+    @Test
     public void successfulLayersSwitch1() throws Exception {
         var layersTool = new RightToolsPanel();
         layersTool.chooseDefaultLayer();
@@ -91,6 +91,7 @@ public class ToolsTest extends BaseTest {
         language.switchToUkrainian();
         Assertions.assertTrue(language.isPageInUkrainian());
     }
+
     @Test
     public void successfulTelegramSwitch() {
         var messenger = new RightToolsPanel();
@@ -106,7 +107,6 @@ public class ToolsTest extends BaseTest {
         TabManagement.switchToNewTab();
         Assertions.assertEquals(PropertyReader.readBotURL(), driver.getCurrentUrl());
     }
-
 
 
 }

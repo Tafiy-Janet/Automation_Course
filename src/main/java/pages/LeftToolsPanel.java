@@ -8,7 +8,7 @@ public class LeftToolsPanel extends BasePage {
     private WebElement searchBar;
     @FindBy(xpath = "//div[@data-point='50.4500336,30.5241361']")
     private WebElement inputData;
-    @FindBy(xpath = "//img[contains(@src,'images/marker-icon')]")
+    @FindBy(xpath = "//img[contains(@src,'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.8.0/images/marker-icon')]")
     private WebElement markerIcon;
     @FindBy(xpath = "//div[@id='arty-control']")
     private WebElement artilleryButton;
