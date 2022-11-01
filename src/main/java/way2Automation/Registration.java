@@ -1,6 +1,7 @@
 package way2Automation;
 
-import org.junit.jupiter.api.Test;
+import helpers.WebElementHelper;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pageUtils.BasePage;
@@ -44,6 +45,7 @@ public class Registration extends BasePage {
     private WebElement submitButton;
     @FindBy(xpath = "//label[contains(.,'This field is required.')]")
     private WebElement errorMessage;
+    private By errorMessageSelector = By.xpath("//label[contains(.,'This field is required.')]");
 
     public Registration enterName(String name) {
         inputName.sendKeys(name);
@@ -76,7 +78,7 @@ public class Registration extends BasePage {
         return this;
     }
 
-    public Registration selectPhoneNumber(String phoneNumber) {
+    public Registration enterPhoneNumber(String phoneNumber) {
         phoneNumberField.sendKeys(phoneNumber);
         return this;
     }
@@ -98,6 +100,10 @@ public class Registration extends BasePage {
 
     public Registration enterPassword(String password) {
         passwordField.sendKeys(password);
+        return this;
+    }
+
+    public Registration enterPasswordConfirm(String password) {
         passwordConfirmationField.sendKeys(password);
         return this;
     }
@@ -107,16 +113,16 @@ public class Registration extends BasePage {
         return this;
     }
 
-    public boolean isNameEmpty(){
-        return inputName.getText().equals("");
-    }
-    public boolean isUsernameEmpty(){
-        return usernameField.getText().equals("");
+    public boolean isNameEmpty() {
+        return inputName.getAttribute("value").equals("");
     }
 
-    public boolean isErrorDisplayed(){
-        return errorMessage.isDisplayed();
+    public boolean isUsernameEmpty() {
+        return usernameField.getAttribute("value").equals("");
     }
 
+    public boolean isErrorDisplayed() {
+        return WebElementHelper.isElementPresent(errorMessageSelector);
+    }
 
 }

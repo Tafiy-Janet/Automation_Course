@@ -1,4 +1,4 @@
-package deepStateTests;
+package deepstateTests;
 
 import base.BaseTest;
 import helpers.PropertyReader;
@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Tag;
 import deepstate.pages.UtilityTools;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
 import java.io.File;
 
 @Tag("deepstate")

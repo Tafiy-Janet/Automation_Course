@@ -8,4 +8,5 @@ public class TestValues {
     public static String EMAIL = "Test_123@mail.com";
     public static String DESCRIPTION = "I was born in 1994 - Deli. I am clever, positive thinker and hardworker person.";
     public static String PASSWORD = "123_Test";
+    public static String NOTFULLPASSWORD = "123";
 }

@@ -1,4 +1,4 @@
-package deepStateTests;
+package deepstateTests;
 
 import base.BaseTest;
 import org.junit.jupiter.api.Tag;
