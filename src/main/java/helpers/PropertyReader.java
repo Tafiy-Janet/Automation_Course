@@ -25,6 +25,9 @@ public class PropertyReader {
     public static String readURL() {
         return readProperty("url");
     }
+    public static String readWay2AutomationURL() {
+        return readProperty("testUrl");
+    }
     public static String readCapital() {
         return readProperty("capital");
     }
@@ -32,4 +35,5 @@ public class PropertyReader {
     public static String readBrowser() {
         return readProperty("browser");
     }
+
 }
