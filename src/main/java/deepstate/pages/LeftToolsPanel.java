@@ -1,7 +1,8 @@
-package pages;
+package deepstate.pages;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pageUtils.BasePage;
 
 public class LeftToolsPanel extends BasePage {
     @FindBy(xpath = "//input[@class='search-bar']")

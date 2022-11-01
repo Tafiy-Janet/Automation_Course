@@ -1,8 +1,9 @@
-package pages;
+package deepstate.pages;
 
 import helpers.WaitHelper;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pageUtils.BasePage;
 
 public class RightToolsPanel extends BasePage {
 

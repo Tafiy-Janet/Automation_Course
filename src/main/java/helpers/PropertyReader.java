@@ -26,8 +26,16 @@ public class PropertyReader {
         return readProperty("url");
     }
 
+    public static String readWay2AutomationURL() {
+        return readProperty("testUrl");
+    }
+
     public static String readCapital() {
         return readProperty("capital");
+    }
+
+    public static String readPhotoPath() {
+        return readProperty("photoPath");
     }
 
     public static String readTelegramURL() {

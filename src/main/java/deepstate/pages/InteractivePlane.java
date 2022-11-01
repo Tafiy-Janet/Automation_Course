@@ -1,9 +1,10 @@
-package pages;
+package deepstate.pages;
 
 import helpers.WebElementHelper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pageUtils.BasePage;
 
 
 public class InteractivePlane extends BasePage {

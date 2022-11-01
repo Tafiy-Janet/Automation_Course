@@ -1,4 +1,4 @@
-package pages;
+package pageUtils;
 
 import helpers.DriverBase;
 import org.openqa.selenium.WebDriver;
