@@ -1,11 +1,12 @@
-package tests;
+package deepstateTests;
 
 import base.BaseTest;
-import pages.InteractivePlane;
+import deepstate.pages.InteractivePlane;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-
+@Tag("deepstate")
 public class PlaneTest extends BaseTest {
 
     @Test

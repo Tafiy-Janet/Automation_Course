@@ -11,6 +11,7 @@ public class DriverBase {
 
     private static WebDriver driver;
     protected static final Duration DEFAULT_TIMEOUT_SECONDS = Duration.ofSeconds(15);
+    public static String URL;
 
     private static WebDriver get() {
         WebDriverManager.chromedriver().setup();
@@ -18,9 +19,11 @@ public class DriverBase {
         driver.manage().window().maximize();
         driver.manage().timeouts().pageLoadTimeout(DEFAULT_TIMEOUT_SECONDS);
         driver.manage().timeouts().implicitlyWait(DEFAULT_TIMEOUT_SECONDS);
-        driver.get(PropertyReader.readURL());
-        WaitHelper.JSWaiter();
-        acceptInitialAlerts();
+        driver.get(URL);
+        if(URL.equals(PropertyReader.readURL())) {
+            WaitHelper.JSWaiter();
+            acceptInitialAlerts();
+        }
         return driver;
     }
 

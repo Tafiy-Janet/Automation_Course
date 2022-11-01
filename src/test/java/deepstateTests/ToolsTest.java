@@ -1,16 +1,17 @@
-package tests;
+package deepstateTests;
 
 import base.BaseTest;
 import helpers.PropertyReader;
 import helpers.ScreenshotHelper;
-import pages.LeftToolsPanel;
-import pages.RightToolsPanel;
+import deepstate.pages.LeftToolsPanel;
+import deepstate.pages.RightToolsPanel;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
 
-
+@Tag("deepstate")
 public class ToolsTest extends BaseTest {
     @Test
     public void successfulSearch() {
