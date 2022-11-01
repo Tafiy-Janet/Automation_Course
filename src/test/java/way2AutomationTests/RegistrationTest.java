@@ -1,6 +1,7 @@
 package way2AutomationTests;
 
 import base.BaseTest;
+import helpers.PropertyReader;
 import helpers.TestValues;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Tag;
@@ -41,6 +42,13 @@ public class RegistrationTest extends BaseTest {
         Assertions.assertTrue(register.isErrorDisplayed());
     }
 
+    @Test
+    public void uploadPhoto(){
+        var register = new Registration();
+        register.uploadFile(PropertyReader.readPhotoPath());
+        Assertions.assertTrue(register.getUploadFileName().contains("photo.jpg"));
+    }
+
     /**
      * Bug report: Registration is confirmed with unequal passwords
      * Priority: High
@@ -63,4 +71,5 @@ public class RegistrationTest extends BaseTest {
                 .submit();
         Assertions.assertTrue(register.isErrorDisplayed());
     }
+
 }

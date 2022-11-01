@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pageUtils.BasePage;
 
+import java.io.File;
+
 public class Registration extends BasePage {
     @FindBy(xpath = "//input[@name='name']")
     private WebElement inputName;
@@ -35,6 +37,8 @@ public class Registration extends BasePage {
     private WebElement usernameField;
     @FindBy(xpath = "//input[@name='email']")
     private WebElement emailField;
+    @FindBy(xpath = "//input[@type='file']")
+    private WebElement inputFile;
     @FindBy(xpath = "//textarea[@rows='5']")
     private WebElement aboutYourselfField;
     @FindBy(xpath = "//input[@name='password']")
@@ -106,6 +110,16 @@ public class Registration extends BasePage {
     public Registration enterPasswordConfirm(String password) {
         passwordConfirmationField.sendKeys(password);
         return this;
+    }
+    public Registration uploadFile(String path){
+        String filePath = new File("").getAbsolutePath();
+        filePath = filePath.concat(path);
+        inputFile.sendKeys(filePath);
+        return this;
+    }
+
+    public String getUploadFileName(){
+        return inputFile.getAttribute("value");
     }
 
     public Registration submit() {

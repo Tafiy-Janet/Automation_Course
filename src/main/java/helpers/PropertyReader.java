@@ -31,6 +31,10 @@ public class PropertyReader {
     public static String readCapital() {
         return readProperty("capital");
     }
+    public static String readPhotoPath() {
+        return readProperty( "photoPath");
+    }
+
 
     public static String readBrowser() {
         return readProperty("browser");
