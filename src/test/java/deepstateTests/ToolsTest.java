@@ -6,80 +6,108 @@ import helpers.ScreenshotHelper;
 import helpers.TabManagement;
 import deepstate.pages.LeftToolsPanel;
 import deepstate.pages.RightToolsPanel;
+import helpers.TestListener;
+import io.qameta.allure.Description;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.io.File;
 
+@DisplayName("Controls testing")
+@Feature("Map controls")
 @Tag("deepstate")
+@ExtendWith(TestListener.class)
 public class ToolsTest extends BaseTest {
+    @Story("Find capital of Ukraine")
+    @Description("Check search bar to find capital of Ukraine")
     @Test
     public void successfulSearch() {
-        var searchTool = new LeftToolsPanel();
-        searchTool.fillInSearchBar(PropertyReader.readCapital());
-        Assertions.assertTrue(searchTool.isSearchSuccessful());
+        var searchControl = new LeftToolsPanel();
+        searchControl.fillInSearchBar(PropertyReader.readCapital());
+        Assertions.assertTrue(searchControl.isSearchSuccessful());
     }
 
+    @Story("Select artillery weapon")
+    @Description("Check appearance of artillery menu and option to change projectile")
     @Test
     public void successfulArtilleryCheck() {
-        var artilleryTool = new LeftToolsPanel();
-        artilleryTool.clickArtillery();
-        Assertions.assertTrue(artilleryTool.isArtilleryModalAppear());
+        var artilleryControl = new LeftToolsPanel();
+        artilleryControl.chooseArtillery();
+        Assertions.assertTrue(artilleryControl.isArtilleryModalAppear());
+        artilleryControl.closeArtilleryModal();
+        artilleryControl.changeArtillery();
+        Assertions.assertTrue(artilleryControl.isArtilleryMenuAppear());
     }
 
+    @Story("")
+    @Description("")
     @Test
     public void successfulRulerCheck() {
-        var rulerTool = new RightToolsPanel();
-        rulerTool.clickRuler();
-        Assertions.assertTrue(rulerTool.isRulerModalAppear());
+        var rulerControl = new RightToolsPanel();
+        rulerControl.clickRuler();
+        Assertions.assertTrue(rulerControl.isRulerModalAppear());
     }
 
+    @Story("Select satellite map type")
+    @Description("Change default map type to satellite and check it by taking screenshots of the map before and after")
     @Test
     public void successfulLayersSwitch1() throws Exception {
-        var layersTool = new RightToolsPanel();
-        layersTool.chooseDefaultLayer();
+        var mapTypeControl = new RightToolsPanel();
+        mapTypeControl.chooseDefaultMapType();
         File source1 = ScreenshotHelper.takeSnapShot();
-        layersTool.chooseSatellitePreview();
+        mapTypeControl.chooseSatellitePreview();
         //https://www.lambdatest.com/blog/threadsleep-java-selenium/
         //We need to use Thread.sleep since canvas elements changes are not displayed in DOM and cannot be detected by Selenium waits.
         Thread.sleep(2000);
         File source2 = ScreenshotHelper.takeSnapShot();
-        Assertions.assertTrue(ScreenshotHelper.isTwoImagesNotEqual(source1, source2, 50), "Layers are not changed");
+        Assertions.assertTrue(ScreenshotHelper.isTwoImagesNotEqual(source1, source2, 50), "Map type is not changed");
     }
 
+    @Story("Select terrain map type")
+    @Description("Change default map type to terrain and check it by taking screenshots of the map before and after")
     @Test
     public void successfulLayersSwitch2() throws Exception {
-        var layers = new RightToolsPanel();
-        layers.chooseDefaultLayer();
+        var mapTypeControl = new RightToolsPanel();
+        mapTypeControl.chooseDefaultMapType();
         File source1 = ScreenshotHelper.takeSnapShot();
-        layers.chooseTerrainPreview();
+        mapTypeControl.chooseTerrainPreview();
         //https://www.lambdatest.com/blog/threadsleep-java-selenium/
         //We need to use Thread.sleep since canvas elements changes are not displayed in DOM and cannot be detected by Selenium waits.
         Thread.sleep(2000);
         File source2 = ScreenshotHelper.takeSnapShot();
-        Assertions.assertTrue(ScreenshotHelper.isTwoImagesNotEqual(source1, source2, 20), "Layers are not changed");
+        Assertions.assertTrue(ScreenshotHelper.isTwoImagesNotEqual(source1, source2, 20), "Map type is not changed");
     }
 
+    @Story("Increase zoom level")
+    @Description("Check increasing of zoom level and take screenshot to observe this change")
     @Test
     public void successfulZoomIncrease() throws Exception {
-        var zoom = new RightToolsPanel();
+        var zoomControl = new RightToolsPanel();
         File source1 = ScreenshotHelper.takeSnapShot();
-        zoom.increaseZoom();
+        zoomControl.increaseZoom();
         File source2 = ScreenshotHelper.takeSnapShot();
         Assertions.assertTrue(ScreenshotHelper.isTwoImagesNotEqual(source1, source2, 20), "Zoom is not changed");
     }
 
+    @Story("Decrease zoom level")
+    @Description("Check decreasing of zoom level by increasing it and then decreasing and taking screenshots after each action to catch the difference")
     @Test
     public void successfulZoomDecrease() throws Exception {
-        var zoom = new RightToolsPanel();
-        zoom.increaseZoom();
+        var zoomControl = new RightToolsPanel();
+        zoomControl.increaseZoom();
         File source1 = ScreenshotHelper.takeSnapShot();
-        zoom.decreaseZoom();
+        zoomControl.decreaseZoom();
         File source2 = ScreenshotHelper.takeSnapShot();
         Assertions.assertTrue(ScreenshotHelper.isTwoImagesNotEqual(source1, source2, 20), "Zoom is not changed");
     }
 
+    @Story("Switch to English")
+    @Description("Check language switcher by clicking on English")
     @Test
     public void successfulPageLanguageSwitch1() {
         var language = new RightToolsPanel();
@@ -87,6 +115,8 @@ public class ToolsTest extends BaseTest {
         Assertions.assertTrue(language.isPageInEnglish());
     }
 
+    @Story("Switch to Ukrainian")
+    @Description("Check language switcher by clicking on Ukrainian")
     @Test
     public void successfulPageLanguageSwitch2() {
         var language = new RightToolsPanel();
@@ -94,6 +124,8 @@ public class ToolsTest extends BaseTest {
         Assertions.assertTrue(language.isPageInUkrainian());
     }
 
+    @Story("Redirect to telegram channel")
+    @Description("Switch from map to telegram channel of DeepState")
     @Test
     public void successfulTelegramSwitch() {
         var messenger = new RightToolsPanel();
@@ -102,6 +134,8 @@ public class ToolsTest extends BaseTest {
         Assertions.assertEquals(PropertyReader.readTelegramURL(), driver.getCurrentUrl());
     }
 
+    @Story("Redirect to telegram chat-bot")
+    @Description("Switch from map to telegram chat-bot of DeepState")
     @Test
     public void successfulBotLiveMapSwitch() {
         var bot = new RightToolsPanel();

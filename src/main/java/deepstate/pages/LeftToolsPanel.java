@@ -1,5 +1,6 @@
 package deepstate.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pageUtils.BasePage;
@@ -19,24 +20,50 @@ public class LeftToolsPanel extends BasePage {
     private WebElement artilleryModelButton;
     @FindBy(xpath = "//div[@class='arty-modal']")
     private WebElement artilleryModal;
+    @FindBy(xpath = "//span[@class='close-arty']//img[@src='/images/close.png']")
+    private WebElement closeModalButton;
+    @FindBy(xpath = "//span[@class='change-round']")
+    private WebElement changeProjectileButton;
+    @FindBy(xpath = "//div[@class='dialog-mask']")
+    private WebElement artilleryMenu;
 
-
-
-    public void clickArtillery() {
+    @Step("Select artillery model and projectile")
+    public void chooseArtillery() {
         artilleryButton.click();
         artilleryTypeButton.click();
         artilleryModelButton.click();
     }
 
+    @Step("Close artillery info modal")
+    public void closeArtilleryModal() {
+        closeModalButton.click();
+    }
+
+    @Step("Reopen artillery menu to change artillery projectile")
+    public void changeArtillery() {
+        artilleryButton.click();
+        artilleryTypeButton.click();
+        artilleryModelButton.click();
+        changeProjectileButton.click();
+    }
+
+    @Step("Check if artillery info modal is appeared")
     public boolean isArtilleryModalAppear() {
         return artilleryModal.isDisplayed();
     }
 
+    @Step("Check if artillery menu is appeared")
+    public boolean isArtilleryMenuAppear() {
+        return artilleryMenu.isDisplayed();
+    }
+
+    @Step("Fill in search bar with city {city}")
     public void fillInSearchBar(String city) {
         searchBar.sendKeys(city);
         inputData.click();
     }
 
+    @Step("Check whether the marker icon is appeared on the map")
     public boolean isSearchSuccessful() {
         return markerIcon.isDisplayed();
     }

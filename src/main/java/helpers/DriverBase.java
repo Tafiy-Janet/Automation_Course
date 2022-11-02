@@ -9,7 +9,7 @@ import static helpers.WebElementHelper.acceptInitialAlerts;
 
 public class DriverBase {
 
-    private static WebDriver driver;
+    protected static WebDriver driver;
     protected static final Duration DEFAULT_TIMEOUT_SECONDS = Duration.ofSeconds(15);
     public static String URL;
 

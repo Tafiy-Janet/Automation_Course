@@ -7,8 +7,10 @@ import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 
 
-public class BaseTest {
+
+public class BaseTest  {
     protected static WebDriver driver;
+
     @BeforeEach
     public void setUp(TestInfo info) {
         WebDriverManager.chromedriver().setup();
@@ -19,8 +21,9 @@ public class BaseTest {
         }
         driver = DriverBase.getDriver();
     }
-    @AfterEach
-    public void tearDown() {
-        DriverBase.disposeDriver();
-    }
+
+//    @AfterEach
+//    public void tearDown(){
+//        DriverBase.disposeDriver();
+//    }
 }

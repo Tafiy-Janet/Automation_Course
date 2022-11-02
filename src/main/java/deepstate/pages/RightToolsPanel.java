@@ -1,6 +1,7 @@
 package deepstate.pages;
 
 import helpers.WaitHelper;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pageUtils.BasePage;
@@ -8,7 +9,7 @@ import pageUtils.BasePage;
 public class RightToolsPanel extends BasePage {
 
     @FindBy(xpath = "//div[@id='layers-control']")
-    private WebElement layersButton;
+    private WebElement mapTypeButton;
     @FindBy(xpath = "//div[@class='preview-satellite']")
     private WebElement satellitePreview;
     @FindBy(xpath = "//div[@class='preview-terrain']")
@@ -40,31 +41,35 @@ public class RightToolsPanel extends BasePage {
     private WebElement botButton;
 
 
-
+    @Step("Select ruler control")
     public void clickRuler() {
         rulerButton.click();
     }
 
+    @Step("Check whether the ruler modal is displayed")
     public boolean isRulerModalAppear() {
         return rulerModal.isDisplayed();
     }
 
-
-    public void chooseDefaultLayer() {
-        layersButton.click();
+    @Step("Select default map type")
+    public void chooseDefaultMapType() {
+        mapTypeButton.click();
         WaitHelper.waitAndClick(defaultPreview);
     }
 
+    @Step("Select satellite map type")
     public void chooseSatellitePreview() {
-        layersButton.click();
+        mapTypeButton.click();
         WaitHelper.waitAndClick(satellitePreview);
     }
 
+    @Step("Select terrain map type")
     public void chooseTerrainPreview() {
-        layersButton.click();
+        mapTypeButton.click();
         WaitHelper.waitAndClick(terrainPreview);
     }
 
+    @Step("Increase zoom level using class Actions")
     public void increaseZoom() {
         actions.doubleClick(zoomPlus)
                 .doubleClick(zoomPlus)
@@ -73,6 +78,7 @@ public class RightToolsPanel extends BasePage {
                 .perform();
     }
 
+    @Step("Decrease zoom level using class Actions")
     public void decreaseZoom() {
         actions.doubleClick(zoomMinus)
                 .doubleClick(zoomMinus)
@@ -81,31 +87,37 @@ public class RightToolsPanel extends BasePage {
                 .perform();
     }
 
+    @Step("Switch to Ukrainian language")
     public void switchToUkrainian() {
         infoButton.click();
         ukrainianLanguageButton.click();
     }
 
+    @Step("Switch to English language")
     public void switchToEnglish() {
         infoButton.click();
         englishLanguageButton.click();
     }
 
+    @Step("Check if page is in Ukrainian")
     public boolean isPageInUkrainian() {
         return ukrainianPageLanguage.isEnabled();
     }
 
+    @Step("Check if page is in English")
     public boolean isPageInEnglish() {
         return englishPageLanguage.isEnabled();
     }
 
-    public void switchToTelegram(){
+    @Step("Switch to telegram channel")
+    public void switchToTelegram() {
         telegramButton.click();
     }
-    public void switchToBot(){
+
+    @Step("Switch to telegram chat-bot")
+    public void switchToBot() {
         botButton.click();
     }
-
 
 
 }

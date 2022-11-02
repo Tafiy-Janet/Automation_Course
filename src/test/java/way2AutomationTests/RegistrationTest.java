@@ -2,21 +2,32 @@ package way2AutomationTests;
 
 import base.BaseTest;
 import helpers.PropertyReader;
+import helpers.TestListener;
 import helpers.TestValues;
+import io.qameta.allure.Description;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import way2Automation.Registration;
 
+@DisplayName("Registration page testing")
+@Feature("Registration form")
 @Tag("way2automation")
+@ExtendWith(TestListener.class)
 public class RegistrationTest extends BaseTest {
+    @Story("Complete registration")
+    @Description("Fill in all input fields, radio button and checkbox to make successful registration")
     @Test
     public void successfulFullRegistration() {
         var register = new Registration();
         register.enterName(TestValues.NAME)
                 .chooseMaritalStatus()
                 .chooseHobby()
-                .enterCountry()
+                .selectCountry()
                 .selectDateOfBirth()
                 .enterPhoneNumber(TestValues.PHONE_NUMBER)
                 .enterUsername(TestValues.USERNAME)
@@ -29,12 +40,14 @@ public class RegistrationTest extends BaseTest {
         Assertions.assertTrue(register.isUsernameEmpty());
     }
 
+    @Story("Incomplete registration form")
+    @Description("Not fill in obligatory input fields, such as name, email and phone number in order to get error message")
     @Test
     public void unsuccessfulRegistration() {
         var register = new Registration();
         register.chooseMaritalStatus()
                 .chooseHobby()
-                .enterCountry()
+                .selectCountry()
                 .enterUsername(TestValues.USERNAME)
                 .enterPassword(TestValues.PASSWORD)
                 .enterPasswordConfirm(TestValues.PASSWORD)
@@ -42,6 +55,8 @@ public class RegistrationTest extends BaseTest {
         Assertions.assertTrue(register.isErrorDisplayed());
     }
 
+    @Story("Upload avatar")
+    @Description("Add profile picture to registration form")
     @Test
     public void uploadPhoto() {
         var register = new Registration();
@@ -49,14 +64,8 @@ public class RegistrationTest extends BaseTest {
         Assertions.assertTrue(register.getUploadFileName().contains("photo.jpg"));
     }
 
-    /**
-     * Bug report: Registration is confirmed with unequal passwords
-     * Priority: High
-     * Severity: Critical
-     * Expected result: Error message appears under password fields.
-     * Actual result: Error message does not appear.
-     * Steps to reproduce: 1.Run unequalPasswords().
-     **/
+    @Story("Enter unequal passwords")
+    @Description("Write wrong password in field 'Confirm password' in order to get error message")
     @Test
     public void unequalPasswords() {
         var register = new Registration();
