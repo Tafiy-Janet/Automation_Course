@@ -46,5 +46,5 @@ public class DroneTest extends BaseTest {
         Assertions.assertTrue(plane.isDroneLanded());
     }
 
-
 }
+

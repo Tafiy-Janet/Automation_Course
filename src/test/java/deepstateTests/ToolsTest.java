@@ -47,8 +47,8 @@ public class ToolsTest extends BaseTest {
 
 
     @Test
-    @Story("")
-    @Description("")
+    @Story("Select ruler")
+    @Description("Check appearing of ruler modal")
     public void successfulRulerCheck() {
         var rulerControl = new RightToolsPanel();
         rulerControl.clickRuler();
@@ -130,9 +130,10 @@ public class ToolsTest extends BaseTest {
     @Test
     @Story("Redirect to telegram channel")
     @Description("Switch from map to telegram channel of DeepState")
-    public void successfulTelegramSwitch() {
+    public void successfulTelegramSwitch() throws InterruptedException {
         var messenger = new RightToolsPanel();
         messenger.switchToTelegram();
+        Thread.sleep(1000);
         TabManagement.switchToNewTab();
         Assertions.assertEquals(PropertyReader.readTelegramURL(), driver.getCurrentUrl());
     }

@@ -5,11 +5,26 @@ import helpers.PropertyReader;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.logging.LogType;
+import org.openqa.selenium.logging.LoggingPreferences;
+import org.openqa.selenium.remote.DesiredCapabilities;
+
+import java.util.logging.Level;
 
 
-
-public class BaseTest  {
+public class BaseTest {
     protected static WebDriver driver;
+
+    @BeforeAll
+    public static void setLogs() {
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        LoggingPreferences loggingPreferences = new LoggingPreferences();
+
+        loggingPreferences.enable(LogType.BROWSER, Level.ALL);
+        loggingPreferences.enable(LogType.PERFORMANCE, Level.ALL);
+
+        capabilities.setCapability("goog:loggingPrefs", loggingPreferences);
+    }
 
     @BeforeEach
     public void setUp(TestInfo info) {
@@ -22,8 +37,5 @@ public class BaseTest  {
         driver = DriverBase.getDriver();
     }
 
-//    @AfterEach
-//    public void tearDown(){
-//        DriverBase.disposeDriver();
-//    }
+
 }

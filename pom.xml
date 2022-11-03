@@ -112,7 +112,8 @@
           <groups>create</groups>
           <testFailureIgnore>false</testFailureIgnore>
           <argLine>
-            -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/1.9.6/aspectjweaver-1.9.6.jar"          </argLine>
+          -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/1.9.6/aspectjweaver-1.9.6.jar"
+          </argLine>
           <systemProperties>
             <property>
               <name>junit.jupiter.extensions.autodetection.enabled</name>
