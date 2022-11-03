@@ -15,9 +15,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import way2Automation.Registration;
 
+@Tag("way2automation")
 @DisplayName("Registration page testing")
 @Feature("Registration form")
-@Tag("way2automation")
 @ExtendWith(TestListener.class)
 public class RegistrationTest extends BaseTest {
 

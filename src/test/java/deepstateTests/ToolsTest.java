@@ -18,9 +18,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.io.File;
 
+@Tag("deepstate")
 @DisplayName("Controls testing")
 @Feature("Map controls")
-@Tag("deepstate")
 @ExtendWith(TestListener.class)
 public class ToolsTest extends BaseTest {
     @Test

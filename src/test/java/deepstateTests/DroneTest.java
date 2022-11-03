@@ -12,9 +12,9 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
+@Tag("deepstate")
 @DisplayName("Testing user interaction with plane")
 @Feature("Plane control")
-@Tag("deepstate")
 @ExtendWith(TestListener.class)
 public class DroneTest extends BaseTest {
     @Test
