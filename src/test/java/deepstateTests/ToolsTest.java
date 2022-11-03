@@ -23,18 +23,19 @@ import java.io.File;
 @Tag("deepstate")
 @ExtendWith(TestListener.class)
 public class ToolsTest extends BaseTest {
+    @Test
     @Story("Find capital of Ukraine")
     @Description("Check search bar to find capital of Ukraine")
-    @Test
     public void successfulSearch() {
         var searchControl = new LeftToolsPanel();
         searchControl.fillInSearchBar(PropertyReader.readCapital());
         Assertions.assertTrue(searchControl.isSearchSuccessful());
     }
 
+
+    @Test
     @Story("Select artillery weapon")
     @Description("Check appearance of artillery menu and option to change projectile")
-    @Test
     public void successfulArtilleryCheck() {
         var artilleryControl = new LeftToolsPanel();
         artilleryControl.chooseArtillery();
@@ -44,18 +45,20 @@ public class ToolsTest extends BaseTest {
         Assertions.assertTrue(artilleryControl.isArtilleryMenuAppear());
     }
 
+
+    @Test
     @Story("")
     @Description("")
-    @Test
     public void successfulRulerCheck() {
         var rulerControl = new RightToolsPanel();
         rulerControl.clickRuler();
         Assertions.assertTrue(rulerControl.isRulerModalAppear());
     }
 
+
+    @Test
     @Story("Select satellite map type")
     @Description("Change default map type to satellite and check it by taking screenshots of the map before and after")
-    @Test
     public void successfulLayersSwitch1() throws Exception {
         var mapTypeControl = new RightToolsPanel();
         mapTypeControl.chooseDefaultMapType();
@@ -68,9 +71,9 @@ public class ToolsTest extends BaseTest {
         Assertions.assertTrue(ScreenshotHelper.isTwoImagesNotEqual(source1, source2, 50), "Map type is not changed");
     }
 
+    @Test
     @Story("Select terrain map type")
     @Description("Change default map type to terrain and check it by taking screenshots of the map before and after")
-    @Test
     public void successfulLayersSwitch2() throws Exception {
         var mapTypeControl = new RightToolsPanel();
         mapTypeControl.chooseDefaultMapType();
@@ -83,9 +86,9 @@ public class ToolsTest extends BaseTest {
         Assertions.assertTrue(ScreenshotHelper.isTwoImagesNotEqual(source1, source2, 20), "Map type is not changed");
     }
 
+    @Test
     @Story("Increase zoom level")
     @Description("Check increasing of zoom level and take screenshot to observe this change")
-    @Test
     public void successfulZoomIncrease() throws Exception {
         var zoomControl = new RightToolsPanel();
         File source1 = ScreenshotHelper.takeSnapShot();
@@ -94,9 +97,9 @@ public class ToolsTest extends BaseTest {
         Assertions.assertTrue(ScreenshotHelper.isTwoImagesNotEqual(source1, source2, 20), "Zoom is not changed");
     }
 
+    @Test
     @Story("Decrease zoom level")
     @Description("Check decreasing of zoom level by increasing it and then decreasing and taking screenshots after each action to catch the difference")
-    @Test
     public void successfulZoomDecrease() throws Exception {
         var zoomControl = new RightToolsPanel();
         zoomControl.increaseZoom();
@@ -106,27 +109,27 @@ public class ToolsTest extends BaseTest {
         Assertions.assertTrue(ScreenshotHelper.isTwoImagesNotEqual(source1, source2, 20), "Zoom is not changed");
     }
 
+    @Test
     @Story("Switch to English")
     @Description("Check language switcher by clicking on English")
-    @Test
     public void successfulPageLanguageSwitch1() {
         var language = new RightToolsPanel();
         language.switchToEnglish();
         Assertions.assertTrue(language.isPageInEnglish());
     }
 
+    @Test
     @Story("Switch to Ukrainian")
     @Description("Check language switcher by clicking on Ukrainian")
-    @Test
     public void successfulPageLanguageSwitch2() {
         var language = new RightToolsPanel();
         language.switchToUkrainian();
         Assertions.assertTrue(language.isPageInUkrainian());
     }
 
+    @Test
     @Story("Redirect to telegram channel")
     @Description("Switch from map to telegram channel of DeepState")
-    @Test
     public void successfulTelegramSwitch() {
         var messenger = new RightToolsPanel();
         messenger.switchToTelegram();
@@ -134,9 +137,9 @@ public class ToolsTest extends BaseTest {
         Assertions.assertEquals(PropertyReader.readTelegramURL(), driver.getCurrentUrl());
     }
 
+    @Test
     @Story("Redirect to telegram chat-bot")
     @Description("Switch from map to telegram chat-bot of DeepState")
-    @Test
     public void successfulBotLiveMapSwitch() {
         var bot = new RightToolsPanel();
         bot.switchToBot();

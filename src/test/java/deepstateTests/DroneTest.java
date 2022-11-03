@@ -17,18 +17,18 @@ import org.junit.jupiter.api.extension.ExtendWith;
 @Tag("deepstate")
 @ExtendWith(TestListener.class)
 public class DroneTest extends BaseTest {
+    @Test
     @Story("Launch plane")
     @Description("Launch Bayraktar by clicking on coat of arms of Ukraine")
-    @Test
     public void successfulPlaneLaunch() {
         var plane = new InteractiveDrone()
                 .launchDrone();
         Assertions.assertTrue(plane.isDroneLaunched());
     }
 
+    @Test
     @Story("Make bombardment")
     @Description("Check bombardment by Bayraktar clicking on enemy (pigdog)")
-    @Test
     public void successfulBombardment() {
         var plane = new InteractiveDrone()
                 .launchDrone()
@@ -36,9 +36,9 @@ public class DroneTest extends BaseTest {
         Assertions.assertTrue(plane.isBombardmentMade());
     }
 
+    @Test
     @Story("Land plane")
     @Description("Launch Bayraktar and land it, check its absence")
-    @Test
     public void successfulPlaneLanding() {
         var plane = new InteractiveDrone()
                 .launchDrone()

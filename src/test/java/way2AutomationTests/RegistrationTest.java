@@ -2,6 +2,7 @@ package way2AutomationTests;
 
 import base.BaseTest;
 import helpers.PropertyReader;
+
 import helpers.TestListener;
 import helpers.TestValues;
 import io.qameta.allure.Description;
@@ -19,6 +20,7 @@ import way2Automation.Registration;
 @Tag("way2automation")
 @ExtendWith(TestListener.class)
 public class RegistrationTest extends BaseTest {
+
     @Story("Complete registration")
     @Description("Fill in all input fields, radio button and checkbox to make successful registration")
     @Test
@@ -40,6 +42,7 @@ public class RegistrationTest extends BaseTest {
         Assertions.assertTrue(register.isUsernameEmpty());
     }
 
+
     @Story("Incomplete registration form")
     @Description("Not fill in obligatory input fields, such as name, email and phone number in order to get error message")
     @Test
@@ -55,6 +58,7 @@ public class RegistrationTest extends BaseTest {
         Assertions.assertTrue(register.isErrorDisplayed());
     }
 
+
     @Story("Upload avatar")
     @Description("Add profile picture to registration form")
     @Test
@@ -63,6 +67,7 @@ public class RegistrationTest extends BaseTest {
         register.uploadFile(PropertyReader.readPhotoPath());
         Assertions.assertTrue(register.getUploadFileName().contains("photo.jpg"));
     }
+
 
     @Story("Enter unequal passwords")
     @Description("Write wrong password in field 'Confirm password' in order to get error message")
