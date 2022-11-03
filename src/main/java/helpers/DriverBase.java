@@ -10,6 +10,8 @@ import static helpers.WebElementHelper.acceptInitialAlerts;
 public class DriverBase {
 
     protected static WebDriver driver;
+
+    protected static final int DEFAULT_RETRIES = 10;
     protected static final Duration DEFAULT_TIMEOUT_SECONDS = Duration.ofSeconds(15);
     public static String URL;
 

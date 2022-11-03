@@ -7,16 +7,39 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 
 
 public class WaitHelper extends DriverBase {
 
     private static WebDriverWait wait = new WebDriverWait(getDriver(), DEFAULT_TIMEOUT_SECONDS);
 
-    public static void waitAndClick(WebElement locator) {
-        wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
+    public static boolean waitAndClick(WebElement locator) {
+        var retries = 0;
+        while(retries <= DEFAULT_RETRIES) {
+            try {
+                wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
+                return true;
+            }catch (Exception e){
+                retries++;
+            }
+        }
+        return  false;
     }
-
+    public static boolean waitAndClick(List<WebElement> locators) {
+        var retries = 0;
+        while(retries <= DEFAULT_RETRIES) {
+            try {
+                for (WebElement clickable: locators) {
+                    wait.until(ExpectedConditions.elementToBeClickable(clickable)).click();
+                }
+                return true;
+            }catch (Exception e){
+                retries++;
+            }
+        }
+        return false;
+    }
     public static WebElement waitClickable(WebElement locator) {
         return wait.until(ExpectedConditions.elementToBeClickable(locator));
     }

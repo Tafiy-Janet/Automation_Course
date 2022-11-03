@@ -49,6 +49,7 @@
   </dependencies>
 
   <build>
+
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
         <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
@@ -98,42 +99,47 @@
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>2.22.2</version>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-failsafe-plugin</artifactId>
-        <version>2.22.2</version>
         <configuration>
-          <includes>
-            <include>*/**</include>
-          </includes>
-          <groups>create</groups>
-          <testFailureIgnore>false</testFailureIgnore>
-          <argLine>
-          -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/1.9.6/aspectjweaver-1.9.6.jar"
-          </argLine>
-          <systemProperties>
-            <property>
-              <name>junit.jupiter.extensions.autodetection.enabled</name>
-              <value>true</value>
-            </property>
-          </systemProperties>
-          <systemPropertyVariables>
-            <allure.results.directory>target/allure-results</allure.results.directory>
-          </systemPropertyVariables>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>io.qameta.allure</groupId>
-        <artifactId>allure-maven</artifactId>
-        <version>2.10.0</version>
-        <configuration>
-          <allureDownloadUrl>https://github.com/allure-framework/allure2/releases/download/2.14.0/allure-2.14.0.zip</allureDownloadUrl>
-        </configuration>
-      </plugin>
-    </plugins>
-    <testOutputDirectory>target/classes</testOutputDirectory>
-  </build>
-</project>
+           <argLine>
+             -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/1.9.6/aspectjweaver-1.9.6.jar"
+           </argLine>
+         </configuration>
+         <artifactId>maven-surefire-plugin</artifactId>
+         <version>2.22.2</version>
+       </plugin>
+       <plugin>
+         <groupId>org.apache.maven.plugins</groupId>
+         <artifactId>maven-failsafe-plugin</artifactId>
+         <version>2.22.2</version>
+         <configuration>
+           <includes>
+             <include>*/**</include>
+           </includes>
+           <groups>create</groups>
+           <testFailureIgnore>false</testFailureIgnore>
+           <argLine>
+           -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/1.9.6/aspectjweaver-1.9.6.jar"
+           </argLine>
+           <systemProperties>
+             <property>
+               <name>junit.jupiter.extensions.autodetection.enabled</name>
+               <value>true</value>
+             </property>
+           </systemProperties>
+           <systemPropertyVariables>
+             <allure.results.directory>target/allure-results</allure.results.directory>
+           </systemPropertyVariables>
+         </configuration>
+       </plugin>
+       <plugin>
+         <groupId>io.qameta.allure</groupId>
+         <artifactId>allure-maven</artifactId>
+         <version>2.10.0</version>
+         <configuration>
+           <allureDownloadUrl>https://github.com/allure-framework/allure2/releases/download/2.14.0/allure-2.14.0.zip</allureDownloadUrl>
+         </configuration>
+       </plugin>
+     </plugins>
+     <testOutputDirectory>target/classes</testOutputDirectory>
+   </build>
+ </project>
